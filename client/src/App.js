@@ -4,8 +4,9 @@ import Sidebar from './components/Sidebar';
 function App() {
   return (
     <div className="app">
+      <h1>COVID-19 Dashboard</h1>
+      <div className="break" />
       <Sidebar />
-      <h1 style={{ paddingLeft: '1rem' }}>COVID-19 Dashboard</h1>
     </div>
   );
 }
