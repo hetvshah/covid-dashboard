@@ -11,7 +11,7 @@ export const SidebarData = [
     link: '/',
   },
   {
-    title: 'Add or View Locations',
+    title: 'Add or View Location Stats',
     icon: <LocationOnIcon />,
     link: '/locations',
   },

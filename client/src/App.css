@@ -4,7 +4,7 @@
   /* display: flex; */
 }
 
-h1 {
+.header-title {
   padding: 1rem;
   background-color: black;
   color: white;
