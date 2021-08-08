@@ -1,9 +1,20 @@
 import React from 'react';
 
-export default function Pins() {
-  return (
-    <div>
-      <h1>Pins</h1>
-    </div>
-  );
+class Pins extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      pins: [],
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Pins</h1>
+      </div>
+    );
+  }
 }
+
+export default Pins;
