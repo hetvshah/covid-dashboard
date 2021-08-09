@@ -15,6 +15,12 @@ class Stats extends React.Component {
 
   async componentDidMount() {
     const data = await fetchStates();
+    console.log(data.data[0]);
+    // data.map((entry) => {
+    //   entry.state === 'Arkansas'
+    //     ? console.log(entry.confirmed_cases)
+    //     : console.log('NOPE');
+    // });
     console.log(data);
   }
 
