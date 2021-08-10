@@ -1,6 +1,5 @@
 import React from 'react';
 import Input from '../components/LocationComponents/Input';
-import Stats from '../components/LocationComponents/Stats';
 
 class Location extends React.Component {
   render() {
@@ -8,7 +7,6 @@ class Location extends React.Component {
       <div>
         <h1>Add or View Location Stats</h1>
         <Input />
-        <Stats />
       </div>
     );
   }
