@@ -1,7 +1,21 @@
-.container {
+.outer-container {
   background-color: #f8f8f8;
   text-align: center;
   padding: 0.2rem;
+  padding-bottom: 1rem;
   margin: 1rem;
   width: 25rem;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon:hover {
+  color: red;
+}
+
+.icon:active {
+  color: red;
 }

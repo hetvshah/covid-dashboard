@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiPin } from 'react-icons/bi';
+import { AiFillPushpin } from 'react-icons/ai';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import InfoIcon from '@material-ui/icons/Info';
@@ -7,16 +7,16 @@ import InfoIcon from '@material-ui/icons/Info';
 export const SidebarData = [
   {
     title: 'Pins',
-    icon: <BiPin />,
+    icon: <AiFillPushpin />,
     link: '/',
   },
   {
-    title: 'Add or View Location Stats',
+    title: 'Add or View Location',
     icon: <LocationOnIcon />,
     link: '/locations',
   },
   {
-    title: 'Notifs',
+    title: 'Notifications',
     icon: <NotificationsActiveIcon />,
     link: '/notifs',
   },

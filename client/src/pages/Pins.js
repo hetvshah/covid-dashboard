@@ -1,4 +1,5 @@
 import React from 'react';
+import { Layout } from '../components/Layout';
 
 class Pins extends React.Component {
   constructor() {
@@ -10,9 +11,11 @@ class Pins extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Pins</h1>
-      </div>
+      <Layout>
+        <div>
+          <h1>Pins</h1>
+        </div>
+      </Layout>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { fetchStates, fetchCounties } from '../api/Request';
 import './Stat.css';
+import { AiFillPushpin } from 'react-icons/ai';
 
 export default class StatCard extends Component {
   constructor() {
@@ -8,7 +9,7 @@ export default class StatCard extends Component {
     this.state = {
       states: [],
       counties: [],
-      confirmedCases: 0,
+      cases: 0,
       deaths: 0,
     };
   }
@@ -29,7 +30,7 @@ export default class StatCard extends Component {
         console.log('state');
         if (state.state === this.props.label) {
           this.setState({
-            confirmedCases: state.confirmed_cases,
+            cases: state.cases,
             deaths: state.deaths,
           });
         }
@@ -42,10 +43,11 @@ export default class StatCard extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="outer-container">
         <h2>{this.props.label}</h2>
-        <p>Confirmed cases: {this.state.confirmedCases}</p>
+        <p>Confirmed cases: {this.state.cases}</p>
         <p>Deaths: {this.state.deaths}</p>
+        <AiFillPushpin className="icon" />
       </div>
     );
   }
