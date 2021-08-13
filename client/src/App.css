@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Augillion';
+  src: url(Augillion.otf);
+}
+
 .app {
   width: 100vw;
   height: 100vh;
@@ -5,14 +10,22 @@
 }
 
 .header-title {
-  padding: 1rem;
-  background-color: black;
-  color: white;
+  font-family: 'Augillion';
+  font-weight: 400;
+  color: #89b19a;
+  font-size: 3rem;
+  padding: 2.3rem 1.2rem 1rem 2.3rem;
+  /* background-color: black; */
+  /* color: white; */
   margin: 0;
 }
 
-.break {
+/* .break {
   width: 100%;
   height: 10px;
   background-color: #1d70b8;
+} */
+
+h1 {
+  color: #403f43;
 }

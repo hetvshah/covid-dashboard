@@ -74,7 +74,6 @@ const Login = ({ resetState }) => {
           Need an account? <Link to="signup">Sign Up</Link>
         </div>
       </div>
-      {/* <Footer /> */}
     </Container>
   );
 };

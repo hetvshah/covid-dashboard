@@ -1,12 +1,11 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar/Sidebar';
 import './App.css';
 import Pins from './pages/Pins';
 import Location from './pages/Location';
 import Notifs from './pages/Notifs';
 import Source from './pages/Source';
 import Login from './pages/Login';
-import { Container } from 'react-bootstrap';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -26,6 +25,7 @@ function App() {
         />
 
         <Route exact path="/login" render={(props) => <Login {...props} />} />
+        <Route exact path="/signup" render={(props) => <Signup {...props} />} />
       </Switch>
     </BrowserRouter>
   );
