@@ -46,7 +46,7 @@ const Signup = () => {
     try {
       setError('');
       setLoading(true);
-      const { data } = await api.signup(formData);
+      const { data } = await api.signup(state);
       dispatchEvent({ type: 'AUTH', data });
       //   await signup(
       //     nameRef.current.value,

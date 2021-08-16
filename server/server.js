@@ -18,6 +18,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+app.use('/users', usersRouter);
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
@@ -38,7 +39,6 @@ mongoose
   .catch((err) => console.log(err));
 
 // const usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
 
 const connection = mongoose.connection;
 connection.once('open', () => {

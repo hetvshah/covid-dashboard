@@ -6,23 +6,26 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      require: true,
       unique: true,
       trim: true,
       minlength: 3,
     },
     email: {
       type: String,
-      required: true,
+      require: true,
+      index: true,
+      unique: true,
+      sparse: true,
     },
     password: {
       type: String,
-      required: true,
+      require: true,
     },
     id: { type: String },
     pins: {
       type: Array,
-      // required: false,
+      required: false,
     },
   },
   {
