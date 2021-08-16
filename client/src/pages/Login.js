@@ -4,24 +4,17 @@ import { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 // import Footer from '../Footer';
 import './Auth.css';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as api from '../api/Auth';
-
-const initialState = {
-  email: '',
-  password: '',
-};
 
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const [formData, setFormData] = useState(initialState);
-
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -31,17 +24,11 @@ const Login = () => {
       password: passwordRef.current.value,
     };
 
-    setFormData(state);
-
-    // dispatch(signin(formData, history));
-
     try {
       setError('');
       setLoading(true);
-      // const { data } =
-      await api.login(formData);
-      // dispatchEvent({ type: 'AUTH', data });
-      // await login(emailRef.current.value, passwordRef.current.value);
+      const { data } = await api.login(state);
+      dispatch({ type: 'AUTH', data });
       history.push('/');
     } catch {
       setError('Failed to log in');

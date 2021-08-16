@@ -30,7 +30,8 @@ h1 {
 .logout {
   background-color: white;
   border: none;
-  margin: 1rem;
+  margin: 0;
+  margin-right: 2rem;
   font-size: 1.2rem;
   color: darkgray;
 }

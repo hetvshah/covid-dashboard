@@ -1,7 +1,7 @@
 import { Card, Button, Form, Alert, Container } from 'react-bootstrap';
 import { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as api from '../api/Auth';
 
 const Signup = () => {
@@ -14,7 +14,7 @@ const Signup = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -35,9 +35,8 @@ const Signup = () => {
     try {
       setError('');
       setLoading(true);
-      // const { data } =
-      await api.signup(state);
-      // dispatchEvent({ type: 'AUTH', data });
+      const { data } = await api.signup(state);
+      dispatch({ type: 'AUTH', data });
       //   await signup(
       //     nameRef.current.value,
       //     emailRef.current.value,
