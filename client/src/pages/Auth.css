@@ -19,10 +19,10 @@ hr {
   overflow: visible;
 }
 
-.initial-header {
+/* .initial-header {
   margin-top: 0;
   margin-bottom: 0.5rem;
-}
+} */
 
 a {
   color: #007bff;
@@ -101,14 +101,14 @@ button::-moz-focus-inner,
   border-style: none;
 }
 
-.initial-header {
+/* .initial-header {
   margin-bottom: 0.5rem;
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
   color: inherit;
   font-size: 2rem;
-}
+} */
 
 .pre-scrollable {
   max-height: 340px;
@@ -992,6 +992,10 @@ a.text-light:focus {
 }
 
 .product-name {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   text-align: center;
+
+  font-family: 'Augillion';
+  font-weight: 400;
+  color: #89b19a;
 }

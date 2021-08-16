@@ -4,28 +4,49 @@ import { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 // import Footer from '../Footer';
 import './Auth.css';
+// import { useDispatch } from 'react-redux';
+import * as api from '../api/Auth';
 
-const Login = ({ resetState }) => {
+const initialState = {
+  email: '',
+  password: '',
+};
+
+const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  //   const { login } = useAuth();
-  //   const [error, setError] = useState('');
-  //   const [loading, setLoading] = useState(false);
-  //   const history = useHistory();
+  const [formData, setFormData] = useState(initialState);
+
+  // const { login } = useAuth();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
+  // const dispatch = useDispatch();
 
   async function handleSubmit(e) {
-    //   e.preventDefault();
-    //   try {
-    //     setError('');
-    //     setLoading(true);
-    //     resetState();
-    //     await login(emailRef.current.value, passwordRef.current.value);
-    //     history.push('/');
-    //   } catch {
-    //     setError('Failed to log in');
-    //   }
-    //   setLoading(false);
+    e.preventDefault();
+
+    const state = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    setFormData(state);
+
+    // dispatch(signin(formData, history));
+
+    try {
+      setError('');
+      setLoading(true);
+      const { data } = await api.login(formData);
+      dispatchEvent({ type: 'AUTH', data });
+      // await login(emailRef.current.value, passwordRef.current.value);
+      history.push('/');
+    } catch {
+      setError('Failed to log in');
+    }
+    setLoading(false);
   }
 
   return (
@@ -38,7 +59,7 @@ const Login = ({ resetState }) => {
         <Card>
           <Card.Body>
             <h2 className="initial-header text-center mb-4">Log In</h2>
-            {/* {error && <Alert variant="danger">{error}</Alert>} */}
+            {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
@@ -57,7 +78,7 @@ const Login = ({ resetState }) => {
                 ></Form.Control>
               </Form.Group>
               <Button
-                // disabled={loading}
+                disabled={loading}
                 type="Submit"
                 className="w-100"
                 style={{ backgroundColor: 'black' }}

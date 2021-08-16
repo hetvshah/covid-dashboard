@@ -1,37 +1,63 @@
 import { Card, Button, Form, Alert, Container } from 'react-bootstrap';
 import { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+import * as api from '../api/Auth';
 
-const Signup = ({ resetState }) => {
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
+
+const Signup = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
+  const [formData, setFormData] = useState(initialState);
+
   //   const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  //   const dispatch = useDispatch();
 
   async function handleSubmit(e) {
-    // e.preventDefault();
-    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-    //   return setError('Passwords do not match.');
-    // }
-    // try {
-    //   setError('');
-    //   setLoading(true);
-    //   resetState();
-    //   await signup(
-    //     nameRef.current.value,
-    //     emailRef.current.value,
-    //     passwordRef.current.value
-    //   );
-    //   history.push('/');
-    // } catch {
-    //   setError('Failed to create an account');
-    // }
-    // setLoading(false);
+    e.preventDefault();
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError('Passwords do not match.');
+    }
+
+    const state = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      confirmPassword: passwordConfirmRef.current.value,
+    };
+
+    setFormData(state);
+
+    // dispatch(signup(formData, history));
+
+    try {
+      setError('');
+      setLoading(true);
+      const { data } = await api.signup(formData);
+      dispatchEvent({ type: 'AUTH', data });
+      //   await signup(
+      //     nameRef.current.value,
+      //     emailRef.current.value,
+      //     passwordRef.current.value
+      //   );
+      history.push('/');
+    } catch {
+      setError('Failed to create an account');
+    }
+    setLoading(false);
   }
 
   return (
@@ -48,12 +74,13 @@ const Signup = ({ resetState }) => {
             <Form onSubmit={handleSubmit}>
               <Form.Group id="name">
                 <Form.Label>Name</Form.Label>
-                <Form.Control ref={nameRef} required></Form.Control>
+                <Form.Control name="name" ref={nameRef} required></Form.Control>
               </Form.Group>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
+                  name="email"
                   ref={emailRef}
                   required
                 ></Form.Control>
@@ -62,6 +89,7 @@ const Signup = ({ resetState }) => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
+                  name="password"
                   ref={passwordRef}
                   required
                 ></Form.Control>
@@ -70,6 +98,7 @@ const Signup = ({ resetState }) => {
                 <Form.Label>Password Confirmation</Form.Label>
                 <Form.Control
                   type="password"
+                  name="confirmPassword"
                   ref={passwordConfirmRef}
                   required
                 ></Form.Control>
