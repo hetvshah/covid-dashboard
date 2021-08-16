@@ -4,20 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 import * as api from '../api/Auth';
 
-const initialState = {
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
-
 const Signup = () => {
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-
-  const [formData, setFormData] = useState(initialState);
 
   //   const { signup } = useAuth();
   const [error, setError] = useState('');
@@ -39,23 +30,23 @@ const Signup = () => {
       confirmPassword: passwordConfirmRef.current.value,
     };
 
-    setFormData(state);
-
     // dispatch(signup(formData, history));
 
     try {
       setError('');
       setLoading(true);
-      const { data } = await api.signup(state);
-      dispatchEvent({ type: 'AUTH', data });
+      // const { data } =
+      await api.signup(state);
+      // dispatchEvent({ type: 'AUTH', data });
       //   await signup(
       //     nameRef.current.value,
       //     emailRef.current.value,
       //     passwordRef.current.value
       //   );
       history.push('/');
-    } catch {
-      setError('Failed to create an account');
+    } catch (err) {
+      console.log(err);
+      // setError('Failed to create an account');
     }
     setLoading(false);
   }

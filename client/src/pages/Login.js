@@ -18,7 +18,6 @@ const Login = () => {
 
   const [formData, setFormData] = useState(initialState);
 
-  // const { login } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -39,8 +38,9 @@ const Login = () => {
     try {
       setError('');
       setLoading(true);
-      const { data } = await api.login(formData);
-      dispatchEvent({ type: 'AUTH', data });
+      // const { data } =
+      await api.login(formData);
+      // dispatchEvent({ type: 'AUTH', data });
       // await login(emailRef.current.value, passwordRef.current.value);
       history.push('/');
     } catch {

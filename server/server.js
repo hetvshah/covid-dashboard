@@ -17,14 +17,14 @@ dotenv.config();
 // require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 
 const app = express();
-const port = process.env.PORT || 5000;
-app.use('/users', usersRouter);
+const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 
 app.use(cors());
 app.use(express.json());
+app.use('/users', usersRouter);
 
 const uri = process.env.ATLAS_URI;
 mongoose
@@ -34,7 +34,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() =>
-    app.listen(port, () => console.log(`Server is running on port: ${port}`))
+    app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`))
   )
   .catch((err) => console.log(err));
 

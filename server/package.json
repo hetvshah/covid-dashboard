@@ -20,5 +20,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.5",
     "nodemon": "^2.0.12"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

@@ -21,3 +21,20 @@
 h1 {
   color: #403f43;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout {
+  background-color: white;
+  border: none;
+  margin: 1rem;
+  font-size: 1.2rem;
+  color: darkgray;
+}
+
+.logout:hover {
+  cursor: pointer;
+}
