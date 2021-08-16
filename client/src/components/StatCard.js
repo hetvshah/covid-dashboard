@@ -11,6 +11,7 @@ export default class StatCard extends Component {
       counties: [],
       cases: 0,
       deaths: 0,
+      color: 'primary',
     };
   }
 
@@ -38,6 +39,31 @@ export default class StatCard extends Component {
       });
     } else {
       // county
+      console.log(this.state.counties);
+      const index = this.props.label.indexOf(',');
+      const countyLabel = this.props.label.substring(0, index);
+      const stateLabel = this.props.label.substring(
+        index + 2,
+        this.props.label.length
+      );
+      console.log(stateLabel);
+      this.state.counties.data.map((county) => {
+        if (county.county === countyLabel && county.state === stateLabel) {
+          this.setState({
+            cases: county.cases,
+            deaths: county.deaths,
+          });
+        }
+        return null;
+      });
+    }
+  }
+
+  handleClick() {
+    if (this.state.color === 'primary') {
+      this.setState({ color: 'secondary' });
+    } else {
+      this.setState({ color: 'primary' });
     }
   }
 
@@ -47,7 +73,12 @@ export default class StatCard extends Component {
         <h2>{this.props.label}</h2>
         <p>Confirmed cases: {this.state.cases}</p>
         <p>Deaths: {this.state.deaths}</p>
-        <AiFillPushpin className="icon" />
+        <AiFillPushpin
+          className={this.state.color}
+          onClick={() => {
+            this.handleClick();
+          }}
+        />
       </div>
     );
   }

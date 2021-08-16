@@ -11,6 +11,7 @@ export const Layout = ({ children }) => {
   const location = useLocation();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  console.log(user);
 
   useEffect(() => {
     const token = user?.token;
@@ -36,9 +37,13 @@ export const Layout = ({ children }) => {
     <div className="app">
       <div className="header">
         <h1 className="header-title">COVID-19 Dashboard</h1>
-        <button className="logout" type="submit" onClick={handleLogout}>
-          Log Out
-        </button>
+        {user !== null ? (
+          <button className="logout" type="submit" onClick={handleLogout}>
+            Log Out
+          </button>
+        ) : (
+          ''
+        )}
       </div>
 
       <div style={{ display: 'flex' }}>

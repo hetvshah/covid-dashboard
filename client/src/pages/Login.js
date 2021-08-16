@@ -73,8 +73,14 @@ const Login = () => {
                 Log In
               </Button>
             </Form>
-            <div className="w-100 text-center mt-3">
+            {/* <div className="w-100 text-center mt-3">
               <Link to="/forgot-password">Forgot Password?</Link>
+            </div> */}
+            <div className="w-100 text-center mt-3">
+              <div style={{ fontSize: '1.2rem', color: 'darkgray' }}>OR</div>
+              <div style={{ paddingTop: '1rem' }}>
+                <Link to="/">Continue as a Guest</Link>
+              </div>
             </div>
           </Card.Body>
         </Card>

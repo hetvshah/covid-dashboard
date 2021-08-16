@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import * as api from '../api/Auth';
 
 const Signup = () => {
-  const nameRef = useRef();
+  // const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -24,7 +24,7 @@ const Signup = () => {
     }
 
     const state = {
-      name: nameRef.current.value,
+      // name: nameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
       confirmPassword: passwordConfirmRef.current.value,
@@ -62,10 +62,10 @@ const Signup = () => {
             <h2 className="text-center mb-4">Sign Up</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group id="name">
+              {/* <Form.Group id="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control name="name" ref={nameRef} required></Form.Control>
-              </Form.Group>
+              </Form.Group> */}
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -102,6 +102,12 @@ const Signup = () => {
                 Sign Up
               </Button>
             </Form>
+            <div className="w-100 text-center mt-3">
+              <div style={{ fontSize: '1.2rem', color: 'darkgray' }}>OR</div>
+              <div style={{ paddingTop: '1rem' }}>
+                <Link to="/">Continue as a Guest</Link>
+              </div>
+            </div>
           </Card.Body>
         </Card>
         <div className="w-100 text-center mt-2">

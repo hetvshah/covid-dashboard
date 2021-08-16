@@ -7,15 +7,21 @@
   width: 25rem;
 }
 
-.icon {
+.primary,
+.secondary {
   width: 2rem;
   height: 2rem;
 }
 
-.icon:hover {
+.primary:hover {
+  color: #89b19a;
+  cursor: pointer;
+}
+
+.secondary {
   color: #89b19a;
 }
 
-.icon:active {
-  color: #89b19a;
+.secondary:hover {
+  cursor: pointer;
 }
