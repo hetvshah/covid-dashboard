@@ -18,4 +18,9 @@ Helpful resources:
 - [React Select](https://react-select.com/home)
 
 ### Todo
-
+- make responsive
+- guest page
+- allow user to make pins
+- display all user pins
+- notifs page
+- sources page
