@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 // import Footer from '../Footer';
 import './Auth.css';
 import { useDispatch } from 'react-redux';
-import * as api from '../api/Auth';
+import * as api from '../api/API';
 
 const Login = () => {
   const emailRef = useRef();

@@ -12,6 +12,8 @@ export default class StatCard extends Component {
       cases: 0,
       deaths: 0,
       color: 'primary',
+      chosenState: null,
+      chosenCounty: null,
     };
   }
 
@@ -26,20 +28,18 @@ export default class StatCard extends Component {
 
     if (this.props.label.indexOf(',') <= -1) {
       // state
-      console.log(this.state.states);
       this.state.states.data.map((state) => {
-        console.log('state');
         if (state.state === this.props.label) {
           this.setState({
             cases: state.cases,
             deaths: state.deaths,
+            chosenState: state,
           });
         }
         return null;
       });
     } else {
       // county
-      console.log(this.state.counties);
       const index = this.props.label.indexOf(',');
       const countyLabel = this.props.label.substring(0, index);
       const stateLabel = this.props.label.substring(
@@ -52,6 +52,7 @@ export default class StatCard extends Component {
           this.setState({
             cases: county.cases,
             deaths: county.deaths,
+            chosenCounty: county,
           });
         }
         return null;
@@ -65,6 +66,11 @@ export default class StatCard extends Component {
     } else {
       this.setState({ color: 'primary' });
     }
+    if (this.state.chosenState !== null) {
+      dispatch(createPost(this.state.chosenState));
+    } else if (this.state.chosenCounty !== null)
+      console.log(this.state.chosenState);
+    console.log(this.state.chosenCounty);
   }
 
   render() {

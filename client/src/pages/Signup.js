@@ -2,7 +2,7 @@ import { Card, Button, Form, Alert, Container } from 'react-bootstrap';
 import { useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import * as api from '../api/Auth';
+import * as api from '../api/API';
 
 const Signup = () => {
   // const nameRef = useRef();
@@ -37,15 +37,9 @@ const Signup = () => {
       setLoading(true);
       const { data } = await api.signup(state);
       dispatch({ type: 'AUTH', data });
-      //   await signup(
-      //     nameRef.current.value,
-      //     emailRef.current.value,
-      //     passwordRef.current.value
-      //   );
       history.push('/');
     } catch (err) {
-      console.log(err);
-      // setError('Failed to create an account');
+      setError('Failed to create an account');
     }
     setLoading(false);
   }
