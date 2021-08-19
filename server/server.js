@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import usersRouter from './routes/users.js';
+import pinsRouter from './routes/pins.js';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
 app.use(express.json());
 app.use('/users', usersRouter);
+app.use('/pins', pinsRouter);
 
 const uri = process.env.ATLAS_URI;
 mongoose
