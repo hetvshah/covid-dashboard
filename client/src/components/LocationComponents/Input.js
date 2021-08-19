@@ -9,20 +9,24 @@ export class Input extends Component {
     this.state = {
       options: [],
       selectedOption: null,
+      states: [],
+      counties: [],
     };
   }
 
   async componentDidMount() {
-    const states = await fetchStates();
-    const counties = await fetchCounties();
-    const statesArr = states.data.map((state) => {
+    this.setState({
+      states: await fetchStates(),
+      counties: await fetchCounties(),
+    });
+    const statesArr = this.state.states.data.map((state) => {
       return { value: state.state, label: state.state };
     });
 
     const countiesArr = [];
 
     for (var i = 0; i < 501; i++) {
-      const county = counties.data[i];
+      const county = this.state.counties.data[i];
       countiesArr.push({
         value: county.county + ', ' + county.state,
         label: county.county + ', ' + county.state,
@@ -46,7 +50,13 @@ export class Input extends Component {
   render() {
     if (this.state.selectedOption !== null) {
       const stats = this.state.selectedOption.map((option) => {
-        return <StatCard label={option.label} />;
+        return (
+          <StatCard
+            label={option.label}
+            states={this.state.states}
+            counties={this.state.counties}
+          />
+        );
       });
       return (
         <div>

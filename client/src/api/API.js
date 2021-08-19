@@ -17,4 +17,6 @@ export const signup = (formData) => {
 };
 export const login = (formData) => API.post('/users/login', formData);
 
+export const getPins = () => API.get('/pins');
 export const addPin = (pin) => API.post('/pins', pin);
+// `/posts/${id}`
