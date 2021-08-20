@@ -24,9 +24,9 @@ Helpful resources:
 
 ### Todo
 - make responsive
-- guest page
 - notifs page
 - sources page
-- allow users to delete pins
+- allow users to delete pins (give each pin a unique ID)
 - componentDidUpdate
 - consistency between pins and locations (with displaying and colors)
+- fix when user === null 
