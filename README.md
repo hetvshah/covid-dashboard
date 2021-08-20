@@ -4,7 +4,7 @@ Keep track and stay updated on the pandemic in different states / counties acros
 
 Built with React, Express, NodeJS, and MongoDB (MERN stack)
 
-<img width="1680" alt="Screen Shot 2021-08-16 at 4 36 42 PM" src="https://user-images.githubusercontent.com/68198839/130171121-333ad956-2ab3-41d1-98a0-5fcc0c8c3922.png">
+<img width="1680" alt="Screen Shot 2021-08-19 at 9 48 42 PM" src="https://user-images.githubusercontent.com/68198839/130171378-0d5776dc-3735-4207-b2e7-5ec02949cd4d.png">
 
 *Note:* Not responsive yet, works best on a larger screen.
 
