@@ -29,6 +29,7 @@ app.use('/users', usersRouter);
 app.use('/pins', pinsRouter);
 
 const uri = process.env.ATLAS_URI;
+mongoose.set('useFindAndModify', false);
 mongoose
   .connect(uri, {
     useNewUrlParser: true,

@@ -47,22 +47,21 @@ const StatCard = (props) => {
     } else {
       setColor('primary');
     }
-    console.log(chosenCounty);
-    console.log(chosenState);
+    // console.log(chosenCounty);
     if (chosenCounty !== null) {
       const info = {
-        county: this.state.chosenCounty.county,
-        state: this.state.chosenCounty.state,
-        cases: this.state.chosenCounty.cases,
-        deaths: this.state.chodenCounty.deaths,
+        county: chosenCounty.county,
+        state: chosenCounty.state,
+        cases: chosenCounty.cases,
+        deaths: chosenCounty.deaths,
       };
       dispatch(addPins(info));
     } else if (chosenState !== null) {
       const info = {
-        county: this.state.chosenCounty.county,
-        state: this.state.chosenCounty.state,
-        cases: this.state.chosenCounty.cases,
-        deaths: this.state.chodenCounty.deaths,
+        county: chosenState.county,
+        state: chosenState.state,
+        cases: chosenState.cases,
+        deaths: chosenState.deaths,
       };
       dispatch(addPins(info));
     }

@@ -5,9 +5,12 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getPins } from '../actions/pins';
 import { useDispatch } from 'react-redux';
+import { fetchStates, fetchCounties } from '../api/Request';
+import PinCard from '../components/PinCard';
 
 const Pins = () => {
-  // const [pins, setPins] = useState([]);
+  const [states, setStates] = useState([]);
+  const [counties, setCounties] = useState([]);
   const user = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
 
@@ -19,7 +22,19 @@ const Pins = () => {
     return state.pins;
   });
 
+  useEffect(async () => {
+    setStates(await fetchStates());
+    setCounties(await fetchCounties());
+  }, []);
+
   console.log(pins);
+
+  function getCards() {
+    const stats = pins.map((pin) => {
+      return <PinCard pin={pin} />;
+    });
+    return stats;
+  }
 
   return (
     <div>
@@ -31,8 +46,14 @@ const Pins = () => {
               <Link to="/signup">Sign up</Link> or{' '}
               <Link to="/login">log in</Link> to make and view pins.
             </div>
+          ) : pins.length === 0 ? (
+            <div>No pins to show.</div>
           ) : (
-            ''
+            <div
+              style={{ display: 'grid', gridTemplateColumns: 'auto auto auto' }}
+            >
+              {getCards()}
+            </div>
           )}
         </div>
       </Layout>
