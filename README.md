@@ -23,7 +23,8 @@ Helpful resources:
 ### Todo
 - make responsive
 - guest page
-- allow user to make pins
-- display all user pins
 - notifs page
 - sources page
+- allow users to delete pins
+- componentDidUpdate
+- consistency between pins and locations (with displaying and colors)
