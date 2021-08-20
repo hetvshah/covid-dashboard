@@ -4,6 +4,8 @@ Keep track and stay updated on the pandemic in different states / counties acros
 
 Built with React, Express, NodeJS, and MongoDB (MERN stack)
 
+*Note:* Not responsive yet, works best on a larger screen.
+
 ### Key Takeaway
 
 Learning about APIs and new databases are tough, but I guess practice makes perfect??
