@@ -25,6 +25,7 @@ const userSchema = new Schema(
     pins: {
       type: Array,
       required: false,
+      _id: true,
     },
   },
   {

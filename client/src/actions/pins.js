@@ -1,5 +1,4 @@
 import * as api from '../api/API';
-//
 
 export const getPins = () => async (dispatch) => {
   try {
@@ -13,7 +12,6 @@ export const getPins = () => async (dispatch) => {
 export const addPins = (pin) => async (dispatch) => {
   try {
     const { data } = await api.addPin(pin);
-    console.log(data);
     dispatch({ type: 'CREATE', data });
   } catch (err) {
     console.log(err);
