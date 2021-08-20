@@ -5,12 +5,9 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getPins } from '../actions/pins';
 import { useDispatch } from 'react-redux';
-import { fetchStates, fetchCounties } from '../api/Request';
 import PinCard from '../components/PinCard';
 
 const Pins = () => {
-  const [states, setStates] = useState([]);
-  const [counties, setCounties] = useState([]);
   const user = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
 
@@ -21,11 +18,6 @@ const Pins = () => {
   const pins = useSelector((state) => {
     return state.pins;
   });
-
-  useEffect(async () => {
-    setStates(await fetchStates());
-    setCounties(await fetchCounties());
-  }, []);
 
   console.log(pins);
 
