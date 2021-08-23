@@ -29,4 +29,4 @@ Helpful resources:
 - allow users to delete pins (give each pin a unique ID)
 - componentDidUpdate
 - consistency between pins and locations (with displaying and colors)
-- fix when user === null 
+- add footer
