@@ -37,7 +37,7 @@ const PinCard = (props) => {
   return (
     <div className="outer-container">
       <h2>
-        {console.log(props)}
+        {/* {console.log(props)} */}
         {props.pin.county === undefined
           ? props.pin.state
           : props.pin.county + ', ' + props.pin.state}

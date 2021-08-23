@@ -19,8 +19,6 @@ const Pins = () => {
     return state.pins;
   });
 
-  console.log(pins);
-
   function getCards() {
     const stats = pins.map((pin) => {
       return <PinCard pin={pin} />;

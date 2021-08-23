@@ -12,14 +12,11 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-const user = JSON.parse(localStorage.getItem('profile'));
-const id = user.result._id;
-
 export const signup = (formData) => {
   API.post('/users/signup', formData);
 };
 export const login = (formData) => API.post('/users/login', formData);
 
-export const getPins = () => API.get(`/pins/${id}`);
-export const addPin = (pin) => API.post(`/pins/${id}`, pin);
-// `/posts/${id}`
+export const getPins = (id) => API.get(`/pins/${id}`);
+
+export const addPin = (pin, id) => API.post(`/pins/${id}`, pin);
