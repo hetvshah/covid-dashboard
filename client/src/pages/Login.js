@@ -28,7 +28,7 @@ const Login = () => {
       setError('');
       setLoading(true);
       const { data } = await api.login(state);
-      dispatch({ type: 'AUTH', data });
+      await dispatch({ type: 'AUTH', data });
       history.push('/');
     } catch {
       setError('Failed to log in');

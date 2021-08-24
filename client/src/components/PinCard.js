@@ -2,11 +2,15 @@ import React from 'react';
 import './Stat.css';
 import { AiFillPushpin } from 'react-icons/ai';
 import { useState } from 'react';
+import { deletePin } from '../actions/pins';
+import { useDispatch, useSelector } from 'react-redux';
 
 const PinCard = (props) => {
   const [color, setColor] = useState('secondary');
-  const [chosenState] = useState(null);
-  const [chosenCounty] = useState(null);
+  const [chosenState, setChosenState] = useState();
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
+  const pins = useSelector((state) => state.pins);
 
   function handleClick() {
     if (color === 'primary') {
@@ -14,8 +18,9 @@ const PinCard = (props) => {
     } else {
       setColor('primary');
     }
-    // console.log(chosenCounty);
-    if (chosenCounty !== null) {
+
+    if (props.pin.county !== undefined) {
+      console.log(props.pin);
       //   const info = {
       //     county: chosenCounty.county,
       //     state: chosenCounty.state,
@@ -23,14 +28,14 @@ const PinCard = (props) => {
       //     deaths: chosenCounty.deaths,
       //   };
       //   dispatch(addPins(info));
-    } else if (chosenState !== null) {
-      //   const info = {
-      //     county: chosenState.county,
-      //     state: chosenState.state,
-      //     cases: chosenState.cases,
-      //     deaths: chosenState.deaths,
-      //   };
-      //   dispatch(addPins(info));
+    } else if (props.pin.state !== undefined) {
+      //   console.log(props.pin);
+      for (var i = 0; i < pins.length; i++) {
+        if (pins[i].state === props.pin.state) {
+          setChosenState(pins[i]);
+        }
+      }
+      dispatch(deletePin(chosenState, user.result._id));
     }
   }
 

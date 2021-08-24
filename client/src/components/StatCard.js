@@ -12,6 +12,8 @@ const StatCard = (props) => {
   const [chosenState, setChosenState] = useState(null);
   const [chosenCounty, setChosenCounty] = useState(null);
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem('profile'));
+  console.log(user);
 
   useEffect(() => {
     if (props.label.indexOf(',') <= -1) {
@@ -55,7 +57,7 @@ const StatCard = (props) => {
         cases: chosenCounty.cases,
         deaths: chosenCounty.deaths,
       };
-      dispatch(addPins(info));
+      dispatch(addPins(info, user.result._id));
     } else if (chosenState !== null) {
       const info = {
         county: chosenState.county,
@@ -63,7 +65,7 @@ const StatCard = (props) => {
         cases: chosenState.cases,
         deaths: chosenState.deaths,
       };
-      dispatch(addPins(info));
+      dispatch(addPins(info, user.result._id));
     }
   }
 

@@ -12,8 +12,12 @@ const Pins = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPins());
-  }, [dispatch]);
+    if (user[0] === null) {
+      dispatch(getPins(0));
+    } else {
+      dispatch(getPins(user[0].result._id));
+    }
+  }, [dispatch, user]);
 
   const pins = useSelector((state) => {
     return state.pins;
