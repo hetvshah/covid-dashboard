@@ -37,8 +37,22 @@ export const deletePin = async (req, res) => {
 
   try {
     const user = await User.findById(id);
-    console.log(user.pins);
-    // await user.updateOne({ $pull: { pins: { _id: pin } } });
+
+    // user.pins.filter((onePin) => {
+    //   console.log(onePin._id.toString());
+    //   console.log(pin);
+    //   onePin._id.toString() === pin.toString();
+    // });
+
+    // console.log(user.pins);
+
+    // user.update({ $set: { pins: user.pins } });
+
+    // let idk = await user.updateOne({ $pull: { pins: { _id: pin } } });
+
+    // console.log(idk);
+
+    // await user.updateOne({ $pull: { pins: { _id: new ObjectId(pin) } } });
     // await user.pins.pull({ _id: pin });
     // await user.save();
     // await User.updateOne(
@@ -51,16 +65,27 @@ export const deletePin = async (req, res) => {
     // await user.updateOne({}, { $pull: { _id: pin } });
     // await user.pins.findByIdAndRemove(pin);
     // .pins.findByIdAndRemove(pin);
-    user.pins.update(
-      {},
-      { $pull: { 'pins._id': new ObjectId(pin) } },
-      function (err, val) {
-        console.log(val);
-      }
+    // user.pins.update(
+    //   {},
+    //   { $pull: { 'pins._id': new ObjectId(pin) } },
+    //   function (err, val) {
+    //     console.log(val);
+    //   }
+    // );
+
+    var pinID = mongoose.mongo.ObjectID(pin);
+
+    const test = await User.findByIdAndUpdate(
+      id,
+      { $pull: { pins: { _id: pinID } } },
+      { safe: true, upsert: true, new: true }
     );
 
-    res.status(201).json();
+    console.log(test);
+
+    res.status(201).json(test.pins);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.log(error);
+    // res.status(400).json({ message: error.message });
   }
 };
