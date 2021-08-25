@@ -6,11 +6,11 @@ Built with React, Express, NodeJS, and MongoDB (MERN stack)
 
 <img width="1680" alt="Screen Shot 2021-08-19 at 9 48 42 PM" src="https://user-images.githubusercontent.com/68198839/130171378-0d5776dc-3735-4207-b2e7-5ec02949cd4d.png">
 
-*Note:* Not responsive yet, works best on a larger screen.
+*Note:* Not responsive yet, works best on a desktop.
 
-### Key Takeaway
+### Data
 
-Learning about APIs and new databases are tough, but I guess practice makes perfect??
+New York Times keeps an ongoing repo on coronavirus cases and deaths in the nation. Check out their [repo](https://github.com/nytimes/covid-19-data)
 
 ### Acknowledgements
 
