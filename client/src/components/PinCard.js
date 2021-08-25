@@ -32,10 +32,11 @@ const PinCard = (props) => {
       //   console.log(props.pin);
       for (var i = 0; i < pins.length; i++) {
         if (pins[i].state === props.pin.state) {
-          setChosenState(pins[i]);
+          // setChosenState(pins[i]);
+          dispatch(deletePin(pins[i], user.result._id));
+          break;
         }
       }
-      dispatch(deletePin(chosenState, user.result._id));
     }
   }
 

@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get('/:id', getPins);
 router.post('/:id', createPins);
-router.delete('/:id', deletePin);
+router.delete('/:id/:pin', deletePin);
 
 export default router;

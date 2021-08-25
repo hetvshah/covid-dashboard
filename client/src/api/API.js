@@ -19,4 +19,4 @@ export const login = (formData) => API.post('/users/login', formData);
 
 export const getPins = (id) => API.get(`/pins/${id}`);
 export const addPin = (pin, id) => API.post(`/pins/${id}`, pin);
-export const deletePin = (pin, id) => API.delete(`/pins/${id}`, pin);
+export const deletePin = (pin, id) => API.delete(`/pins/${id}/${pin._id}`, pin);

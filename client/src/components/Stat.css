@@ -24,4 +24,5 @@
 
 .secondary:hover {
   cursor: pointer;
+  color: red;
 }

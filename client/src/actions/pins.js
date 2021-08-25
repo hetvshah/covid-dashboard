@@ -19,6 +19,7 @@ export const addPins = (pin, id) => async (dispatch) => {
 };
 
 export const deletePin = (pin, id) => async (dispatch) => {
+  console.log(pin);
   try {
     const { data } = await api.deletePin(pin, id);
 

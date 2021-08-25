@@ -17,13 +17,15 @@ const Pins = () => {
     } else {
       dispatch(getPins(user[0].result._id));
     }
-  }, [dispatch, user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const pins = useSelector((state) => {
     return state.pins;
   });
 
   function getCards() {
+    console.log(pins);
     const stats = pins.map((pin) => {
       return <PinCard pin={pin} />;
     });
