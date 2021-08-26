@@ -4,6 +4,7 @@ import '../App.css';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
+import Footer from './Footer';
 
 export const Layout = ({ children }) => {
   const history = useHistory();
@@ -33,22 +34,25 @@ export const Layout = ({ children }) => {
     setUser(null);
   }
   return (
-    <div className="app">
-      <div className="header">
-        <h1 className="header-title">COVID-19 Dashboard</h1>
-        {user !== null ? (
-          <button className="logout" type="submit" onClick={handleLogout}>
-            Log Out
-          </button>
-        ) : (
-          ''
-        )}
-      </div>
+    <div className="outer">
+      <div className="app content">
+        <div className="header">
+          <h1 className="header-title">COVID-19 Dashboard</h1>
+          {user !== null ? (
+            <button className="logout" type="submit" onClick={handleLogout}>
+              Log Out
+            </button>
+          ) : (
+            ''
+          )}
+        </div>
 
-      <div style={{ display: 'flex' }}>
-        <Sidebar />
-        {children}
+        <div style={{ display: 'flex' }}>
+          <Sidebar />
+          {children}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

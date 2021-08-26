@@ -3,11 +3,10 @@
   src: url(Augillion.otf);
 }
 
-.app {
+/* .app {
   width: 100vw;
   height: 100vh;
-  /* display: flex; */
-}
+} */
 
 .header-title {
   font-family: 'Augillion';
@@ -40,3 +39,14 @@ h1 {
   cursor: pointer;
 }
 
+.outer {
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex-grow: 1;
+}

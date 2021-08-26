@@ -1,99 +1,142 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Select, { createFilter } from 'react-select';
-import { fetchStates, fetchCounties } from '../../api/Request';
 import StatCard from '../StatCard';
+import { useState, useMemo } from 'react';
+import escapeRegExp from 'lodash/escapeRegExp';
 
-export class Input extends Component {
-  constructor() {
-    super();
-    this.state = {
-      options: [],
-      selectedOption: null,
-      states: [],
-      counties: [],
-    };
-  }
+// function GetSlice({ countiesArr }) {
+//   const slicedOptions = useMemo(() => countiesArr.slice(0, 500), [countiesArr]);
 
-  async componentDidMount() {
-    this.setState({
-      states: await fetchStates(),
-      counties: await fetchCounties(),
-    });
-    const statesArr = this.state.states.data.map((state) => {
-      return { value: state.state, label: state.state };
-    });
+//   return slicedOptions;
+// }
 
-    // const countiesArr = this.state.counties.data.map((county) => {
-    //   return {
-    //     value: county.county + ', ' + county.state,
-    //     label: county.county + ', ' + county.state,
-    //   };
-    // });
+const MAX_DISPLAYED_OPTIONS = 500;
 
-    const countiesArr = [];
+const Input = ({ states, counties, options }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
 
-    for (var i = 0; i < 501; i++) {
-      const county = this.state.counties.data[i];
-      countiesArr.push({
-        value: county.county + ', ' + county.state,
-        label: county.county + ', ' + county.state,
-      });
+  const filteredOptions = useMemo(() => {
+    if (!selectedOption) {
+      return options;
     }
 
-    this.setState({
-      options: [
-        { label: 'states', options: statesArr },
-        { label: 'counties', options: countiesArr },
-      ],
-    });
-    console.log(this.state.options);
-  }
+    const matchByStart = [];
+    const matchByInclusion = [];
 
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
-    );
-  };
+    const regByInclusion = new RegExp(escapeRegExp(selectedOption), 'i');
+    const regByStart = new RegExp(`^${escapeRegExp(selectedOption)}`, 'i');
 
-  render() {
-    if (this.state.selectedOption !== null) {
-      const stats = this.state.selectedOption.map((option) => {
-        return (
-          <StatCard
-            label={option.label}
-            states={this.state.states}
-            counties={this.state.counties}
-          />
-        );
-      });
+    for (const option of options) {
+      if (regByInclusion.test(option.label)) {
+        if (regByStart.test(option.label)) {
+          matchByStart.push(option);
+        } else {
+          matchByInclusion.push(option);
+        }
+      }
+    }
+
+    return [...matchByStart, ...matchByInclusion];
+  }, [selectedOption, options]);
+
+  const slicedOptions = useMemo(
+    () => filteredOptions.slice(0, MAX_DISPLAYED_OPTIONS),
+    [filteredOptions]
+  );
+
+  console.log(slicedOptions);
+
+  if (selectedOption !== null && selectedOption !== undefined) {
+    const stats = selectedOption.map((option) => {
       return (
-        <div>
-          <Select
-            options={this.state.options}
-            onChange={this.handleChange}
-            filterOption={createFilter({ ignoreAccents: false })}
-            isMulti
-          />
-          <div
-            style={{ display: 'grid', gridTemplateColumns: 'auto auto auto' }}
-          >
-            {stats}
-          </div>
-        </div>
+        <StatCard label={option.label} states={states} counties={counties} />
       );
-    }
-
+    });
     return (
       <div>
+        {console.log(selectedOption)}
         <Select
-          options={this.state.options}
-          onChange={this.handleChange}
+          options={options}
+          onChange={setSelectedOption}
           filterOption={createFilter({ ignoreAccents: false })}
           isMulti
         />
+        <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto' }}>
+          {stats}
+        </div>
       </div>
     );
   }
-}
+
+  return (
+    <div>
+      <Select
+        options={options}
+        onChange={setSelectedOption}
+        filterOption={createFilter({ ignoreAccents: false })}
+        isMulti
+      />
+    </div>
+  );
+};
 
 export default Input;
+
+// export class Input extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       selectedOption: null,
+//       slicedOptions: [],
+//     };
+//   }
+
+//   handleChange = (selectedOption) => {
+//     this.setState({ selectedOption }, () =>
+//       console.log(`Option selected:`, this.state.selectedOption)
+//     );
+//   };
+
+//   render() {
+//     if (this.state.selectedOption !== null) {
+//       const stats = this.state.selectedOption.map((option) => {
+//         return (
+//           <StatCard
+//             label={option.label}
+//             states={this.props.states}
+//             counties={this.props.counties}
+//           />
+//         );
+//       });
+//       return (
+//         <div>
+//           <Select
+//             options={this.props.options}
+//             onChange={this.handleChange}
+//             filterOption={createFilter({ ignoreAccents: false })}
+//             isMulti
+//           />
+//           <div
+//             style={{ display: 'grid', gridTemplateColumns: 'auto auto auto' }}
+//           >
+//             {stats}
+//           </div>
+//         </div>
+//       );
+//     }
+
+//     return (
+//       <div>
+//         {console.log(this.props.options)}
+//         <Select
+//           options={this.props.options}
+//           onChange={this.handleChange}
+//           filterOption={createFilter({ ignoreAccents: false })}
+//           isMulti
+//         />
+//       </div>
+//     );
+//   }
+// }
+
+// export default Input;
