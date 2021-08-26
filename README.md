@@ -26,7 +26,6 @@ Helpful resources:
 - make responsive
 - notifs page
 - sources page
-- allow users to delete pins (give each pin a unique ID)
-- componentDidUpdate
 - consistency between pins and locations (with displaying and colors)
 - add footer
+- fix react-select (super slow when not searching)
