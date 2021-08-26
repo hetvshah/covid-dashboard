@@ -18,7 +18,9 @@ const StatCard = (props) => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
-    dispatch(getPins(user.result._id));
+    if (user !== null) {
+      dispatch(getPins(user.result._id));
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -176,12 +178,16 @@ const StatCard = (props) => {
 
       <p>Confirmed cases: {cases}</p>
       <p>Deaths: {deaths}</p>
-      <AiFillPushpin
-        className={color}
-        onClick={() => {
-          handleClick();
-        }}
-      />
+      {user === null ? (
+        ''
+      ) : (
+        <AiFillPushpin
+          className={color}
+          onClick={() => {
+            handleClick();
+          }}
+        />
+      )}
     </div>
   );
 };
