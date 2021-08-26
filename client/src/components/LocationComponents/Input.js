@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Select, { createFilter } from 'react-select';
-import AsyncSelect from 'react-select/async';
 import { fetchStates, fetchCounties } from '../../api/Request';
 import StatCard from '../StatCard';
-import { useState, useEffect } from 'react';
 
 export class Input extends Component {
   constructor() {

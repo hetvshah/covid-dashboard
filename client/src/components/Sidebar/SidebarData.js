@@ -21,7 +21,7 @@ export const SidebarData = [
     link: '/notifs',
   },
   {
-    title: 'Sources',
+    title: 'Source',
     icon: <InfoIcon />,
     link: '/sources',
   },
