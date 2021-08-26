@@ -2,7 +2,7 @@
 
 Keep track and stay updated on the pandemic in different states / counties across the United States ( + opt in for notifications on your phone!)
 
-Built with React, Express, NodeJS, and MongoDB (MERN stack)
+Built with React / Redux, Express, NodeJS, and MongoDB (MERN stack)
 
 <img width="1680" alt="Screen Shot 2021-08-19 at 9 48 42 PM" src="https://user-images.githubusercontent.com/68198839/130171378-0d5776dc-3735-4207-b2e7-5ec02949cd4d.png">
 
@@ -25,7 +25,3 @@ Helpful resources:
 ### Todo
 - make responsive
 - notifs page
-- sources page
-- consistency between pins and locations (with displaying and colors)
-- add footer
-- fix react-select (super slow when not searching)
