@@ -1,5 +1,5 @@
 import React from 'react';
-import Select, { createFilter } from 'react-select';
+import Select from 'react-select';
 import StatCard from '../StatCard';
 import { useState, useMemo } from 'react';
 import escapeRegExp from 'lodash/escapeRegExp';
@@ -10,23 +10,24 @@ import escapeRegExp from 'lodash/escapeRegExp';
 //   return slicedOptions;
 // }
 
-const MAX_DISPLAYED_OPTIONS = 500;
+const MAX_DISPLAYED_OPTIONS = 450;
 
-const Input = ({ states, counties, options }) => {
+const Input = ({ states, counties, options, statesArr, countiesArr }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [inputValue, setInputValue] = useState('');
 
   const filteredOptions = useMemo(() => {
-    if (!selectedOption) {
-      return options;
+    if (!inputValue) {
+      return countiesArr;
     }
 
     const matchByStart = [];
     const matchByInclusion = [];
 
-    const regByInclusion = new RegExp(escapeRegExp(selectedOption), 'i');
-    const regByStart = new RegExp(`^${escapeRegExp(selectedOption)}`, 'i');
+    const regByInclusion = new RegExp(escapeRegExp(inputValue), 'i');
+    const regByStart = new RegExp(`^${escapeRegExp(inputValue)}`, 'i');
 
-    for (const option of options) {
+    for (const option of countiesArr) {
       if (regByInclusion.test(option.label)) {
         if (regByStart.test(option.label)) {
           matchByStart.push(option);
@@ -37,16 +38,16 @@ const Input = ({ states, counties, options }) => {
     }
 
     return [...matchByStart, ...matchByInclusion];
-  }, [selectedOption, options]);
+  }, [inputValue, countiesArr]);
 
   const slicedOptions = useMemo(
     () => filteredOptions.slice(0, MAX_DISPLAYED_OPTIONS),
     [filteredOptions]
   );
 
-  console.log(slicedOptions);
-
   if (selectedOption !== null && selectedOption !== undefined) {
+    console.log('HELLO');
+    console.log(selectedOption);
     const stats = selectedOption.map((option) => {
       return (
         <StatCard label={option.label} states={states} counties={counties} />
@@ -54,11 +55,14 @@ const Input = ({ states, counties, options }) => {
     });
     return (
       <div>
-        {console.log(selectedOption)}
         <Select
-          options={options}
+          options={[
+            { label: 'states', options: statesArr },
+            { label: 'counties', options: slicedOptions },
+          ]}
+          onInputChange={(value) => setInputValue(value)}
           onChange={setSelectedOption}
-          filterOption={createFilter({ ignoreAccents: false })}
+          // filterOption={createFilter({ ignoreAccents: false })}
           isMulti
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto' }}>
@@ -68,12 +72,18 @@ const Input = ({ states, counties, options }) => {
     );
   }
 
+  console.log(inputValue);
+
   return (
     <div>
       <Select
-        options={options}
+        options={[
+          { label: 'states', options: statesArr },
+          { label: 'counties', options: slicedOptions },
+        ]}
+        onInputChange={(value) => setInputValue(value)}
         onChange={setSelectedOption}
-        filterOption={createFilter({ ignoreAccents: false })}
+        // filterOption={createFilter({ ignoreAccents: false })}
         isMulti
       />
     </div>

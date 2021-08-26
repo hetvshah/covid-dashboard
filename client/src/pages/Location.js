@@ -36,8 +36,6 @@ class Location extends React.Component {
 
     this.setState({ statesArr: statesArr, countiesArr: countiesArr });
 
-    console.log(this.state.countiesArr);
-
     // const countiesArr = [];
 
     // for (var i = 0; i < 501; i++) {
@@ -63,7 +61,6 @@ class Location extends React.Component {
       <Layout>
         <div>
           <h1>Add or View Location</h1>
-          {console.log(this.state.countiesArr)}
           <Input
             states={this.state.states}
             counties={this.state.counties}

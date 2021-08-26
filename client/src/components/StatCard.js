@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { getPins } from '../actions/pins';
 import { deletePin } from '../actions/pins';
+import { Link } from 'react-router-dom';
 
 const StatCard = (props) => {
   const [cases, setCases] = useState(0);
@@ -94,15 +95,20 @@ const StatCard = (props) => {
     if (chosenCounty !== null) {
       if (color === 'primary') {
         setColor('secondary');
-        toast.success('Pin added!', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          <div>
+            Pin added! <Link to="/">View here</Link>
+          </div>,
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
         const info = {
           county: chosenCounty.county,
           state: chosenCounty.state,
@@ -134,15 +140,20 @@ const StatCard = (props) => {
     } else if (chosenState !== null) {
       if (color === 'primary') {
         setColor('secondary');
-        toast.success('Pin added!', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          <div>
+            Pin added! <Link to="/">View here</Link>
+          </div>,
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
         const info = {
           county: chosenState.county,
           state: chosenState.state,
