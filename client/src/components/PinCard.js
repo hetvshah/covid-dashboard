@@ -11,7 +11,6 @@ const PinCard = (props) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
   const pins = useSelector((state) => state.pins);
-  console.log(pins);
 
   function handleClick() {
     toast.error('Pin removed!', {

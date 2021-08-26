@@ -23,22 +23,22 @@ export class Input extends Component {
       return { value: state.state, label: state.state };
     });
 
-    const countiesArr = this.state.counties.data.map((county) => {
-      return {
-        value: county.county + ', ' + county.state,
-        label: county.county + ', ' + county.state,
-      };
-    });
-
-    // const countiesArr = [];
-
-    // for (var i = 0; i < 501; i++) {
-    //   const county = this.state.counties.data[i];
-    //   countiesArr.push({
+    // const countiesArr = this.state.counties.data.map((county) => {
+    //   return {
     //     value: county.county + ', ' + county.state,
     //     label: county.county + ', ' + county.state,
-    //   });
-    // }
+    //   };
+    // });
+
+    const countiesArr = [];
+
+    for (var i = 0; i < 501; i++) {
+      const county = this.state.counties.data[i];
+      countiesArr.push({
+        value: county.county + ', ' + county.state,
+        label: county.county + ', ' + county.state,
+      });
+    }
 
     this.setState({
       options: [
