@@ -4,35 +4,39 @@ import { AiFillPushpin } from 'react-icons/ai';
 import { useState } from 'react';
 import { deletePin } from '../actions/pins';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const PinCard = (props) => {
-  const [color, setColor] = useState('secondary');
-  const [chosenState, setChosenState] = useState();
+  const [color] = useState('secondary');
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
   const pins = useSelector((state) => state.pins);
+  console.log(pins);
 
   function handleClick() {
-    if (color === 'primary') {
-      setColor('secondary');
-    } else {
-      setColor('primary');
-    }
+    toast.error('Pin removed!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
     if (props.pin.county !== undefined) {
-      console.log(props.pin);
-      //   const info = {
-      //     county: chosenCounty.county,
-      //     state: chosenCounty.state,
-      //     cases: chosenCounty.cases,
-      //     deaths: chosenCounty.deaths,
-      //   };
-      //   dispatch(addPins(info));
-    } else if (props.pin.state !== undefined) {
-      //   console.log(props.pin);
       for (var i = 0; i < pins.length; i++) {
+        if (
+          pins[i].county === props.pin.county &&
+          pins[i].state === props.pin.state
+        ) {
+          dispatch(deletePin(pins[i], user.result._id));
+          break;
+        }
+      }
+    } else if (props.pin.state !== undefined) {
+      for (i = 0; i < pins.length; i++) {
         if (pins[i].state === props.pin.state) {
-          // setChosenState(pins[i]);
           dispatch(deletePin(pins[i], user.result._id));
           break;
         }

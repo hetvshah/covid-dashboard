@@ -6,6 +6,8 @@ import Notifs from './pages/Notifs';
 import Source from './pages/Source';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
         <Route exact path="/login" render={(props) => <Login {...props} />} />
         <Route exact path="/signup" render={(props) => <Signup {...props} />} />
       </Switch>
+      <ToastContainer/>
     </BrowserRouter>
   );
 }

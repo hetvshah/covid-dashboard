@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Select, { createFilter } from 'react-select';
+import AsyncSelect from 'react-select/async';
 import { fetchStates, fetchCounties } from '../../api/Request';
 import StatCard from '../StatCard';
+import { useState, useEffect } from 'react';
 
 export class Input extends Component {
   constructor() {
@@ -23,15 +25,22 @@ export class Input extends Component {
       return { value: state.state, label: state.state };
     });
 
-    const countiesArr = [];
-
-    for (var i = 0; i < 501; i++) {
-      const county = this.state.counties.data[i];
-      countiesArr.push({
+    const countiesArr = this.state.counties.data.map((county) => {
+      return {
         value: county.county + ', ' + county.state,
         label: county.county + ', ' + county.state,
-      });
-    }
+      };
+    });
+
+    // const countiesArr = [];
+
+    // for (var i = 0; i < 501; i++) {
+    //   const county = this.state.counties.data[i];
+    //   countiesArr.push({
+    //     value: county.county + ', ' + county.state,
+    //     label: county.county + ', ' + county.state,
+    //   });
+    // }
 
     this.setState({
       options: [
@@ -39,6 +48,7 @@ export class Input extends Component {
         { label: 'counties', options: countiesArr },
       ],
     });
+    console.log(this.state.options);
   }
 
   handleChange = (selectedOption) => {

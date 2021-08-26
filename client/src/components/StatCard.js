@@ -4,6 +4,7 @@ import { AiFillPushpin } from 'react-icons/ai';
 import { addPins } from '../actions/pins';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const StatCard = (props) => {
   const [cases, setCases] = useState(0);
@@ -49,7 +50,18 @@ const StatCard = (props) => {
     } else {
       setColor('primary');
     }
-    // console.log(chosenCounty);
+
+
+    toast.success('Pin added!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
     if (chosenCounty !== null) {
       const info = {
         county: chosenCounty.county,
@@ -88,104 +100,3 @@ const StatCard = (props) => {
 
 export default StatCard;
 
-// export default class StatCard extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       states: [],
-//       counties: [],
-//       cases: 0,
-//       deaths: 0,
-//       color: 'primary',
-//       chosenState: null,
-//       chosenCounty: null,
-//     };
-//   }
-
-//   async componentDidMount() {
-//     const states = await fetchStates();
-//     const counties = await fetchCounties();
-
-//     this.setState({
-//       states: states,
-//       counties: counties,
-//     });
-
-//     if (this.props.label.indexOf(',') <= -1) {
-//       // state
-//       this.state.states.data.map((state) => {
-//         if (state.state === this.props.label) {
-//           this.setState({
-//             cases: state.cases,
-//             deaths: state.deaths,
-//             chosenState: state,
-//           });
-//         }
-//         return null;
-//       });
-//     } else {
-//       // county
-//       const index = this.props.label.indexOf(',');
-//       const countyLabel = this.props.label.substring(0, index);
-//       const stateLabel = this.props.label.substring(
-//         index + 2,
-//         this.props.label.length
-//       );
-//       console.log(stateLabel);
-//       this.state.counties.data.map((county) => {
-//         if (county.county === countyLabel && county.state === stateLabel) {
-//           this.setState({
-//             cases: county.cases,
-//             deaths: county.deaths,
-//             chosenCounty: county,
-//           });
-//         }
-//         return null;
-//       });
-//     }
-//   }
-
-// handleClick() {
-//   if (this.state.color === 'primary') {
-//     this.setState({ color: 'secondary' });
-//   } else {
-//     this.setState({ color: 'primary' });
-//   }
-//   console.log(this.state.chosenCounty);
-//   console.log(this.state.chosenState);
-//   if (this.state.chosenCounty !== null) {
-//     // const info = {
-//     //   county: this.state.chosenCounty.county,
-//     //   state: this.state.chosenCounty.state,
-//     //   cases: this.state.chosenCounty.cases,
-//     //   deaths: this.state.chodenCounty.deaths,
-//     // };
-//     const { dispatch } = this.props;
-//     dispatch(addPins(this.state.chosenCounty));
-//   } else if (this.state.chosenState !== null) {
-//     const { dispatch } = this.props;
-//     dispatch(addPins(this.state.chosenState));
-//     // const info = {
-//     //   state: this.state.chosenCounty.state,
-//     //   cases: this.state.chosenCounty.cases,
-//     //   deaths: this.state.chodenCounty.deaths,
-//     // };
-//   }
-// }
-
-//   render() {
-//     return (
-//       <div className="outer-container">
-//         <h2>{this.props.label}</h2>
-//         <p>Confirmed cases: {this.state.cases}</p>
-//         <p>Deaths: {this.state.deaths}</p>
-//         <AiFillPushpin
-//           className={this.state.color}
-//           onClick={() => {
-//             this.handleClick();
-//           }}
-//         />
-//       </div>
-//     );
-//   }
-// }
