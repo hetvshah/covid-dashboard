@@ -6,6 +6,7 @@ export default function Notifs() {
     <Layout>
       <div>
         <h1>Notifs</h1>
+        <p>Coming soon!</p>
       </div>
     </Layout>
   );
