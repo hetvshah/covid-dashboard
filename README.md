@@ -27,3 +27,4 @@ Helpful resources:
 ### Todo
 - make responsive
 - complete notifications page where user can opt in for sms notifs on their phone
+- forgot password
