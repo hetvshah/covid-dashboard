@@ -1,6 +1,6 @@
 # COVID-19 Dashboard
 
-Keep track and stay updated on the pandemic in different states / counties across the United States ( + opt in for notifications on your phone!)
+Keep track and stay updated on the pandemic in different states / counties across the United States
 
 Built with React / Redux, Express, NodeJS, and MongoDB (MERN stack)
 
