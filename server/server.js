@@ -28,6 +28,10 @@ app.use(express.json());
 app.use('/users', usersRouter);
 app.use('/pins', pinsRouter);
 
+app.use('/', (req, res) => {
+  res.send('hello to pins api');
+});
+
 const uri = process.env.ATLAS_URI;
 mongoose.set('useFindAndModify', false);
 mongoose
