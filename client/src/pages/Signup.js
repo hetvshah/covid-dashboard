@@ -36,9 +36,10 @@ const Signup = () => {
       setError('');
       setLoading(true);
       const { data } = await api.signup(state);
-      dispatch({ type: 'AUTH', data });
+      await dispatch({ type: 'AUTH', data });
       history.push('/');
     } catch (err) {
+      console.log(err);
       setError('Failed to create an account');
     }
     setLoading(false);

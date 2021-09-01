@@ -1,8 +1,12 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://covid-dashboard-b.herokuapp.com/',
+  baseURL: 'http://covid-dashboard-b.herokuapp.com/',
 });
+
+// const API = axios.create({
+//   baseURL: 'http://localhost:5000',
+// });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
@@ -14,9 +18,7 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const signup = (formData) => {
-  API.post('/users/signup', formData);
-};
+export const signup = (formData) => API.post('/users/signup', formData);
 export const login = (formData) => API.post('/users/login', formData);
 
 export const getPins = (id) => API.get(`/pins/${id}`);
